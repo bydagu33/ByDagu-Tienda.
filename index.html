@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ByDagu — Tienda de Ropa - StreetWear</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   ByDagu.CO — Estilos de la Tienda
+   ============================================================
+   COLORES PRINCIPALES — Edita aquí para cambiar toda la paleta
+   ============================================================ */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --negro: #0a0a0a;         /* Fondo general de la página      */
+  --blanco: #ffffff;        /* Texto principal                 */
+  --acento: #E22222;        /* SOLO para ofertas y badges rojo */
+  --gris: #1a1a1a;          /* Fondos de elementos secundarios */
+  --gris-claro: #2e2e2e;    /* Bordes y separadores            */
+  --texto-muted: #888;      /* Texto gris apagado              */
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--negro);
+  color: var(--blanco);
+  min-height: 100vh;
+}
+
+/* ===== NAVBAR ===== */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(15,15,15,0.97);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #222;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2rem; height: 64px;
+}
+.logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 30px; letter-spacing: 5px;
+  color: var(--blanco); text-decoration: none;
+}
+.logo span { color: var(--acento); }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a {
+  color: var(--texto-muted); text-decoration: none;
+  font-size: 12px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; transition: color 0.2s; cursor: pointer;
+}
+.nav-links a:hover,
+.nav-links a.active { color: var(--blanco); }
+.nav-right { display: flex; align-items: center; gap: 1rem; }
+.cart-btn {
+  background: #ffffff;
+  color: #000000;
+  border-radius: 3px; padding: 9px 20px;
+  font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer;
+  transition: opacity 0.2s;
+}
+.cart-btn:hover { opacity: 0.85; }
+.cart-count {
+  background: var(--blanco); color: var(--negro);
+  font-size: 11px; font-weight: 700; border-radius: 50%;
+  width: 18px; height: 18px;
+  display: inline-flex; align-items: center; justify-content: center;
+  margin-left: 6px;
+}
+
+/* ===== HERO ===== */
+.hero {
+  padding: 6rem 2rem 5rem; text-align: center;
+  background: linear-gradient(180deg, #161616 0%, #0f0f0f 100%);  /* <- cambia el degradado aquí */
+  border-bottom: 1px solid #1a1a1a;
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: 'ByDagu';        /* <- cambia el texto de fondo aquí, o pon display:none para quitarlo */
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 240px;
+  color: #181818;           /* <- más claro = más visible, más oscuro = menos visible */
+  letter-spacing: 20px; pointer-events: none;
+  user-select: none; line-height: 1;
+}
+.hero-tag {
+  display: inline-block;
+  background: #ffffff;
+  color: #000000;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  padding: 4px 14px; border-radius: 2px; margin-bottom: 1.5rem;
+}
+.hero h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(52px, 9vw, 96px);
+  line-height: 0.93; letter-spacing: 2px;
+  position: relative; z-index: 1; margin-bottom: 1.25rem;
+}
+.hero h1 em { color: var(--acento); font-style: normal; }
+.hero p {
+  color: var(--texto-muted); font-size: 15px;
+  max-width: 420px; margin: 0 auto 2.5rem;
+  position: relative; z-index: 1; line-height: 1.7;
+}
+.hero-btns {
+  display: flex; gap: 1rem; justify-content: center;
+  position: relative; z-index: 1;
+}
+.btn-primary {
+  background: var(--blanco); color: var(--negro);
+  border: none; padding: 13px 32px;
+  font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer;
+  border-radius: 2px; transition: all 0.2s;
+}
+.btn-primary:hover { background: #333; color: #fff; }
+.btn-secondary {
+  background: transparent; color: var(--blanco);
+  border: 1px solid #444; padding: 13px 32px;
+  font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer;
+  border-radius: 2px; transition: all 0.2s;
+}
+.btn-secondary:hover { border-color: var(--blanco); }
+
+/* ===== SECCIÓN HEADERS ===== */
+.section-header {
+  padding: 3.5rem 2rem 1.5rem;
+  display: flex; align-items: baseline; justify-content: space-between;
+  border-bottom: 1px solid #1a1a1a;
+  margin-bottom: 0;
+}
+.section-header h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 40px; letter-spacing: 4px;
+}
+.section-header span {
+  color: var(--texto-muted); font-size: 12px;
+  font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+}
+
+/* ===== SECCIONES DE CATEGORÍA (Buzos / Camisetas / Gorras) ===== */
+.categoria-header {
+  padding: 2.5rem 2rem 1rem;
+  display: flex; align-items: baseline; justify-content: space-between;
+  border-bottom: 1px solid #1a1a1a;
+  margin: 0 2rem;
+}
+.categoria-header h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px; letter-spacing: 3px;
+}
+.categoria-header span {
+  color: var(--texto-muted); font-size: 11px;
+  font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+}
+
+/* ===== TABS DE CATEGORÍA ===== */
+.categoria-tabs {
+  display: flex; gap: 0.75rem; flex-wrap: wrap;
+  padding: 1.5rem 2rem 0.5rem;
+}
+.categoria-tab {
+  background: transparent; color: var(--texto-muted);
+  border: 1px solid #333; padding: 10px 22px;
+  font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase; cursor: pointer;
+  border-radius: 2px; transition: all 0.2s;
+}
+.categoria-tab:hover { border-color: var(--blanco); color: var(--blanco); }
+.categoria-tab.activa {
+  background: var(--blanco); color: var(--negro); border-color: var(--blanco);
+}
+
+/* ===== SUB-TABS (ej: ajustada / cerrada dentro de Gorras) ===== */
+.subcategoria-tabs {
+  display: flex; gap: 0.5rem; flex-wrap: wrap;
+  padding: 0 2rem 1.5rem;
+}
+.subcategoria-tab {
+  background: transparent; color: var(--texto-muted);
+  border: 1px solid #2a2a2a; padding: 7px 16px;
+  font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 600;
+  letter-spacing: 1px; text-transform: uppercase; cursor: pointer;
+  border-radius: 2px; transition: all 0.2s;
+}
+.subcategoria-tab:hover { border-color: var(--acento); color: var(--blanco); }
+.subcategoria-tab.activa {
+  background: var(--acento); color: var(--blanco); border-color: var(--acento);
+}
+
+/* ===== GRID PRODUCTOS ===== */
+.productos-grid {
+  display: block;
+}
+.categoria-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5px;
+  margin: 1rem 2rem 3rem;
+  border: 1.5px solid #1a1a1a;
+}
+.producto-card {
+  background: #141414; cursor: pointer;
+  transition: background 0.2s; position: relative; overflow: hidden;
+}
+.producto-card:hover { background: #1c1c1c; }
+.producto-img {
+  width: 100%; aspect-ratio: 3/4;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 80px; border-bottom: 1.5px solid #1a1a1a;
+  position: relative; background: #181818;
+}
+.badge-oferta {
+  position: absolute; top: 12px; left: 12px;
+  background: var(--acento); color: #fff;
+  font-size: 10px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; padding: 3px 10px; border-radius: 2px;
+}
+.badge-nuevo {
+  position: absolute; top: 12px; left: 12px;
+  background: #fff; color: #000;
+  font-size: 10px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; padding: 3px 10px; border-radius: 2px;
+}
+.producto-info { padding: 1.25rem 1.25rem 1.5rem; }
+.producto-cat {
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--texto-muted); margin-bottom: 4px;
+}
+.producto-nombre {
+  font-size: 16px; font-weight: 500; margin-bottom: 10px; line-height: 1.3;
+}
+.producto-precio-row {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 14px;
+}
+.precio-actual { font-size: 18px; font-weight: 700; }
+.precio-original {
+  font-size: 13px; color: var(--texto-muted); text-decoration: line-through;
+}
+.tallas { display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
+.talla {
+  font-size: 11px; font-weight: 700; letter-spacing: 0.5px;
+  border: 1px solid #333; color: var(--texto-muted);
+  padding: 4px 8px; border-radius: 2px;
+}
+.btn-agregar {
+  width: 100%; background: transparent; color: var(--blanco);
+  border: 1px solid #333; padding: 10px;
+  font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 700;
+  letter-spacing: 1px; text-transform: uppercase; cursor: pointer;
+  border-radius: 2px; transition: all 0.2s;
+}
+.btn-agregar:hover { background: var(--blanco); color: var(--negro); }
+
+/* ===== OFERTAS ===== */
+.ofertas-section {
+  margin: 0 2rem 4rem;
+  background: #141414; border: 1.5px solid #1a1a1a;
+  display: grid; grid-template-columns: 1fr 1.2fr; gap: 0;
+}
+.oferta-texto {
+  padding: 3rem; border-right: 1.5px solid #1a1a1a;
+}
+.oferta-texto h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 60px; line-height: 0.93;
+  letter-spacing: 2px; margin-bottom: 1.25rem;
+}
+.oferta-texto h3 em { color: var(--acento); font-style: normal; }
+.oferta-texto p {
+  color: var(--texto-muted); font-size: 14px;
+  margin-bottom: 2rem; line-height: 1.7;
+}
+.oferta-lista { padding: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+.oferta-item {
+  display: flex; align-items: center; gap: 1rem;
+  background: #1c1c1c; padding: 1rem 1.25rem;
+  border-radius: 4px; border: 1px solid #222;
+}
+.oferta-emoji { font-size: 40px; }
+.oferta-item-info { flex: 1; }
+.oferta-item-info h4 { font-size: 15px; font-weight: 700; margin-bottom: 2px; }
+.oferta-item-info p { font-size: 12px; color: var(--texto-muted); }
+.oferta-descuento { text-align: right; }
+.oferta-descuento .pct {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 32px; color: var(--acento); line-height: 1;
+}
+.oferta-descuento .antes {
+  font-size: 11px; color: var(--texto-muted); text-decoration: line-through;
+}
+.no-ofertas {
+  padding: 2rem; color: var(--texto-muted); font-size: 14px;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* ===== CONTACTO ===== */
+.contacto-section {
+  margin: 0 2rem 4rem;
+  background: #141414; border: 1.5px solid #1a1a1a;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+}
+.contacto-info { padding: 3rem; border-right: 1.5px solid #1a1a1a; }
+.contacto-info h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 44px; letter-spacing: 2px; margin-bottom: 1rem;
+}
+.contacto-info p {
+  color: var(--texto-muted); font-size: 14px;
+  line-height: 1.7; margin-bottom: 2rem;
+}
+.contacto-datos { display: flex; flex-direction: column; gap: 1rem; }
+.dato { display: flex; align-items: center; gap: 12px; font-size: 14px; }
+.dato-icon {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: #252525; display: flex; align-items: center;
+  justify-content: center; font-size: 16px; flex-shrink: 0;
+  border: 1px solid #333;
+}
+.contacto-form { padding: 3rem; }
+.contacto-form h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 44px; letter-spacing: 2px; margin-bottom: 1.5rem;
+}
+.form-group { margin-bottom: 1.25rem; }
+.form-group label {
+  display: block; font-size: 11px; font-weight: 700;
+  letter-spacing: 1px; text-transform: uppercase;
+  color: var(--texto-muted); margin-bottom: 6px;
+}
+.form-group input, .form-group textarea {
+  width: 100%; background: #1c1c1c;
+  border: 1px solid #333; color: var(--blanco);
+  padding: 11px 14px; font-family: 'DM Sans', sans-serif; font-size: 14px;
+  border-radius: 2px; outline: none; transition: border-color 0.2s;
+}
+.form-group input:focus,
+.form-group textarea:focus { border-color: var(--acento); }
+.form-group textarea { height: 100px; resize: none; }
+.btn-whatsapp {
+  width: 100%; background: #25D366; color: #fff; border: none;
+  padding: 13px; font-family: 'DM Sans', sans-serif;
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 1px; text-transform: uppercase; cursor: pointer;
+  border-radius: 2px; transition: opacity 0.2s; margin-top: 0.5rem;
+}
+.btn-whatsapp:hover { opacity: 0.85; }
+
+/* ===== CARRITO SIDEBAR ===== */
+.carrito-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.7); z-index: 200;
+}
+.carrito-overlay.open { display: block; }
+.carrito-panel {
+  position: fixed; top: 0; right: -420px; width: 420px;
+  height: 100vh; background: #161616;
+  border-left: 1px solid #2a2a2a; z-index: 201;
+  transition: right 0.3s ease; display: flex; flex-direction: column;
+}
+.carrito-panel.open { right: 0; }
+.carrito-header {
+  padding: 1.5rem 1.5rem 1rem;
+  border-bottom: 1px solid #222;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.carrito-header h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px; letter-spacing: 3px;
+}
+.carrito-close {
+  background: none; border: none; color: var(--texto-muted);
+  font-size: 22px; cursor: pointer; line-height: 1;
+}
+.carrito-items { flex: 1; overflow-y: auto; padding: 1rem 1.5rem; }
+.carrito-item {
+  display: flex; gap: 1rem; align-items: center;
+  padding: 0.75rem 0; border-bottom: 1px solid #1e1e1e;
+}
+.carrito-item-info { flex: 1; }
+.carrito-item-info h4 { font-size: 14px; font-weight: 600; margin-bottom: 2px; }
+.carrito-item-info p { font-size: 12px; color: var(--texto-muted); }
+.carrito-item-precio { font-size: 14px; font-weight: 700; }
+.carrito-remove {
+  background: none; border: none; color: #555;
+  cursor: pointer; font-size: 16px; transition: color 0.2s;
+}
+.carrito-remove:hover { color: var(--acento); }
+.carrito-footer {
+  padding: 1.5rem; border-top: 1px solid #222;
+}
+.carrito-total {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 1rem;
+}
+.carrito-total span:first-child {
+  font-size: 12px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--texto-muted);
+}
+.carrito-total span:last-child { font-size: 20px; font-weight: 700; }
+.btn-checkout {
+  width: 100%; background: var(--acento); color: #fff; border: none;
+  padding: 14px; font-family: 'DM Sans', sans-serif;
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  cursor: pointer; border-radius: 2px; transition: opacity 0.2s;
+}
+.btn-checkout:hover { opacity: 0.85; }
+.carrito-vacio {
+  text-align: center; padding: 3rem 1rem;
+  color: var(--texto-muted); font-size: 14px;
+}
+.carrito-vacio-icon { font-size: 48px; margin-bottom: 1rem; display: block; }
+
+/* ===== TOAST ===== */
+.toast {
+  position: fixed; bottom: 2rem; left: 50%;
+  transform: translateX(-50%) translateY(80px);
+  background: #1e1e1e; color: var(--blanco);
+  border: 1px solid #333; border-left: 3px solid var(--acento);
+  padding: 12px 20px; border-radius: 4px; font-size: 13px;
+  font-weight: 500; z-index: 500;
+  transition: transform 0.3s ease; white-space: nowrap;
+}
+.toast.show { transform: translateX(-50%) translateY(0); }
+
+/* ===== FOOTER ===== */
+footer {
+  background: #0a0a0a; border-top: 1px solid #1a1a1a;
+  padding: 2.5rem; text-align: center;
+}
+.footer-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 24px; letter-spacing: 6px; color: #333; margin-bottom: 0.5rem;
+}
+.footer-logo span { color: var(--acento); }
+footer p { font-size: 12px; color: #444; }
+
+/* ===== IMAGEN PANTALLA COMPLETA ===== */
+.fullscreen-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.95); z-index: 500;
+  align-items: center; justify-content: center;
+  cursor: zoom-out;
+}
+.fullscreen-overlay.open { display: flex; }
+.fullscreen-overlay img {
+  max-width: 95vw; max-height: 95vh;
+  object-fit: contain; border-radius: 2px;
+}
+.fullscreen-close {
+  position: absolute; top: 1rem; right: 1rem;
+  background: #1e1e1e; border: 1px solid #444;
+  color: #fff; font-size: 18px; width: 36px; height: 36px;
+  border-radius: 50%; cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+}
+
+/* ===== MODAL DETALLE PRODUCTO ===== */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(0,0,0,0.85); z-index: 300;
+  backdrop-filter: blur(4px);
+}
+.modal-overlay.open { display: block; }
+.modal-producto {
+  position: fixed; top: 50%; left: 50%;
+  transform: translate(-50%, -48%) scale(0.96);
+  width: min(900px, 95vw); max-height: 88vh;
+  background: #111; border: 1px solid #2a2a2a;
+  border-radius: 4px; z-index: 301;
+  overflow: hidden; opacity: 0;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  pointer-events: none;
+}
+.modal-producto.open {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1; pointer-events: all;
+}
+.modal-close {
+  position: absolute; top: 1rem; right: 1rem;
+  background: #1e1e1e; border: 1px solid #333;
+  color: #aaa; font-size: 18px; width: 36px; height: 36px;
+  border-radius: 50%; cursor: pointer; z-index: 10;
+  display: flex; align-items: center; justify-content: center;
+  transition: all 0.2s;
+}
+.modal-close:hover { background: #fff; color: #000; }
+.modal-body {
+  display: grid; grid-template-columns: 1fr 1fr;
+  height: min(88vh, 580px);
+}
+.modal-imagen-wrap {
+  position: relative; background: #181818;
+  border-right: 1px solid #1e1e1e;
+  display: flex; flex-direction: column; overflow: hidden;
+}
+.modal-imagen-wrap > img {
+  width: 100%; flex: 1; object-fit: cover; display: block; min-height: 0;
+}
+.modal-info {
+  padding: 2rem 1.75rem; display: flex; flex-direction: column;
+  gap: 0.75rem; overflow-y: auto;
+}
+.modal-info h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px; letter-spacing: 2px; line-height: 1.1;
+}
+.modal-precio-row { display: flex; align-items: center; gap: 12px; }
+.modal-tallas-label {
+  font-size: 11px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--texto-muted);
+}
+.modal-acciones { display: flex; flex-direction: column; gap: 10px; margin-top: auto; padding-top: 1rem; }
+.modal-btn-agregar { width: 100%; padding: 13px; font-size: 13px; }
+.modal-btn-ws { width: 100%; }
+
+/* ===== GALERÍA MODAL ===== */
+.modal-flecha {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  background: rgba(0,0,0,0.6); color: #fff; border: none;
+  width: 36px; height: 36px; border-radius: 50%;
+  font-size: 18px; cursor: pointer; z-index: 10;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+}
+.modal-flecha:hover { background: rgba(0,0,0,0.9); }
+.modal-flecha-izq { left: 10px; }
+.modal-flecha-der { right: 10px; }
+.modal-contador {
+  position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+  background: rgba(0,0,0,0.6); color: #fff;
+  font-size: 11px; font-weight: 700; padding: 3px 10px;
+  border-radius: 20px; letter-spacing: 1px;
+}
+.modal-miniaturas {
+  display: flex; gap: 6px; flex-wrap: wrap;
+  padding: 10px 12px; background: #111;
+  border-top: 1px solid #1e1e1e;
+}
+.modal-miniatura {
+  width: 58px; height: 58px; object-fit: cover;
+  border-radius: 2px; cursor: pointer;
+  border: 2px solid transparent; transition: border-color 0.2s;
+  opacity: 0.6;
+}
+.modal-miniatura:hover { opacity: 1; }
+.modal-miniatura.activa { border-color: #ffffff; opacity: 1; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .ofertas-section, .contacto-section { grid-template-columns: 1fr; }
+  .oferta-texto { border-right: none; border-bottom: 1.5px solid #1a1a1a; }
+  .contacto-info { border-right: none; border-bottom: 1.5px solid #1a1a1a; }
+  .modal-body { grid-template-columns: 1fr; }
+  .modal-imagen-wrap { border-right: none; border-bottom: 1px solid #1e1e1e; }
+  .modal-imagen-wrap img { min-height: 260px; }
+  .carrito-panel { width: 100%; right: -100%; }
+  .hero::before { font-size: 120px; }
+}
+
+
+</style>
+</head>
+<body>
+
+<nav>
+<a class="logo" href="#" onclick="showSection('catalogo'); window.scrollTo({top:0, behavior:'smooth'})">ByDagu<span>.</span>CO</a>
+  <ul class="nav-links">
+    <li><a onclick="showSection('catalogo')" id="nav-catalogo" class="active">Catálogo</a></li>
+    <li><a onclick="showSection('ofertas')" id="nav-ofertas">Ofertas</a></li>
+    <li><a onclick="showSection('contacto')" id="nav-contacto">Contacto</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="cart-btn" onclick="toggleCarrito()">
+      🛒 Carrito <span class="cart-count" id="cart-count">0</span>
+    </button>
+  </div>
+</nav>
+
+<div id="section-catalogo">
+  <div class="hero">
+    <div class="hero-tag" id="hero-tag">Siente tu estilo</div>
+    <h1 id="hero-titulo">Estilo<br><em>Sin Límites</em></h1>
+    <p id="hero-desc">Ropa urbana y streetwear para hombres que no siguen reglas. Colección exclusiva disponible.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="showSection('catalogo')">Ver catálogo</button>
+      <button class="btn-secondary" onclick="showSection('ofertas')">Ver ofertas</button>
+    </div>
+  </div>
+  <div class="section-header">
+    <h2>Catálogo</h2>
+    <span id="contador-productos">0 productos</span>
+  </div>
+  <div class="categoria-tabs" id="categoria-tabs"></div>
+  <div class="subcategoria-tabs" id="subcategoria-tabs" style="display:none"></div>
+  <div class="productos-grid" id="productos-grid"></div>
+</div>
+
+<div id="section-ofertas" style="display:none">
+  <div class="section-header">
+    <h2>Ofertas Especiales</h2>
+    <span>Solo por tiempo limitado</span>
+  </div>
+  <div class="ofertas-section">
+    <div class="oferta-texto">
+      <h3>HASTA <em>40%</em><br>DE DESCUENTO</h3>
+      <p id="oferta-desc">Piezas seleccionadas con descuentos brutales. Solo por tiempo limitado. No te quedes sin las tuyas.</p>
+      <button class="btn-primary" onclick="showSection('catalogo')">Ver todo el catálogo</button>
+    </div>
+    <div class="oferta-lista" id="oferta-lista"></div>
+  </div>
+</div>
+
+<div id="section-contacto" style="display:none">
+  <div class="section-header">
+    <h2>Contacto</h2>
+    <span>Estamos para ayudarte</span>
+  </div>
+  <div class="contacto-section">
+    <div class="contacto-info">
+      <h3>Hablemos</h3>
+      <p>¿Tienes preguntas sobre pedidos, tallas o envíos? Escríbenos por WhatsApp o llena el formulario y te respondemos pronto.</p>
+      <div class="contacto-datos">
+        <div class="dato"><div class="dato-icon">📱</div><span id="info-telefono">+57 300 000 0000</span></div>
+        <div class="dato"><div class="dato-icon">✉️</div><span id="info-email">info@urbnco.com</span></div>
+        <div class="dato"><div class="dato-icon">📍</div><span id="info-direccion">Sogamoso, Boyacá, Colombia</span></div>
+        <div class="dato"><div class="dato-icon">🕐</div><span id="info-horario">Lun - Sáb: 9am - 7pm</span></div>
+      </div>
+    </div>
+    <div class="contacto-form">
+      <h3>Escríbenos</h3>
+      <div class="form-group">
+        <label>Tu nombre</label>
+        <input type="text" id="form-nombre" placeholder="Ej: Carlos Reyes">
+      </div>
+      <div class="form-group">
+        <label>Tu número (opcional)</label>
+        <input type="tel" id="form-numero" placeholder="Ej: 300 123 4567">
+      </div>
+      <div class="form-group">
+        <label>Mensaje</label>
+        <textarea id="form-mensaje" placeholder="¿En qué te podemos ayudar?"></textarea>
+      </div>
+      <button class="btn-whatsapp" onclick="enviarWhatsApp()">💬 Enviar por WhatsApp</button>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-logo">ByDagu<span>.</span>CO</div>
+  <p>© 2025 ByDagu.CO — Moda urbana colombiana. Todos los derechos reservados.</p>
+</footer>
+
+<!-- CARRITO -->
+<div class="carrito-overlay" id="carrito-overlay" onclick="toggleCarrito()"></div>
+<div class="carrito-panel" id="carrito-panel">
+  <div class="carrito-header">
+    <h3>Mi Carrito</h3>
+    <button class="carrito-close" onclick="toggleCarrito()">✕</button>
+  </div>
+  <div class="carrito-items" id="carrito-items">
+    <div class="carrito-vacio"><span class="carrito-vacio-icon">🛒</span>Tu carrito está vacío</div>
+  </div>
+  <div class="carrito-footer" id="carrito-footer" style="display:none">
+    <div class="carrito-total">
+      <span>Total</span>
+      <span id="carrito-total-precio">$0</span>
+    </div>
+    <button class="btn-checkout" onclick="checkout()">Finalizar pedido por WhatsApp</button>
+  </div>
+</div>
+
+<!-- MODAL PRODUCTO -->
+<div class="modal-overlay" id="modal-overlay" onclick="cerrarModal()"></div>
+<div class="modal-producto" id="modal-producto">
+  <button class="modal-close" onclick="cerrarModal()">✕</button>
+  <div class="modal-body">
+    <div class="modal-imagen-wrap" id="modal-imagen-wrap">
+      <img id="modal-img" src="" alt="" onclick="abrirFullscreen(this.src)" style="cursor:zoom-in">
+      <div id="modal-badge-wrap"></div>
+    </div>
+    <div class="modal-info">
+      <div id="modal-cat" class="producto-cat"></div>
+      <h2 id="modal-nombre"></h2>
+      <div class="modal-precio-row">
+        <span id="modal-precio" class="precio-actual"></span>
+        <span id="modal-original" class="precio-original"></span>
+      </div>
+      <div class="modal-tallas-label">Tallas disponibles</div>
+      <div id="modal-tallas" class="tallas"></div>
+      <div class="modal-acciones">
+        <button class="btn-agregar modal-btn-agregar" id="modal-btn-agregar">+ Agregar al carrito</button>
+        <button class="btn-whatsapp modal-btn-ws" id="modal-btn-ws">💬 Preguntar por WhatsApp</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FULLSCREEN -->
+<div class="fullscreen-overlay" id="fullscreen-overlay" onclick="cerrarFullscreen()">
+  <img id="fullscreen-img" src="" alt="">
+  <button class="fullscreen-close" onclick="cerrarFullscreen()">✕</button>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+
+const config = {
+  nombreTienda: "Bydagu.CO",
+  heroTag: "Crea tu propio estilo con ByDagu",
+  heroTitulo: "Ropa que rima con<br>quién eres",
+  heroDescripcion: "Ropa urbana y streetwear que no sigue reglas. Colección exclusiva disponible.",
+  ofertaDescripcion: "Piezas seleccionadas con descuentos brutales. Solo por tiempo limitado. No te quedes sin las tuyas.",
+  telefono: "+57 319 784 9668",
+  email: "Bydagu33@gmail.com",
+  direccion: "Sogamoso, Boyacá, Colombia",
+  horario: "Lun - Sáb: 7am - 9pm",
+};
+
+const productos = [
+
+  /* ============================================================
+     BUZOS (2 productos)
+     ============================================================ */
+  {
+    nombre: "Hoddie Oversize - Equinox",
+    categoria: "Buzos",
+    precio: 95000,
+    original: 0,
+    imagen: "fotos/Hoddie-equinox.jpeg",
+    badge: "nuevo",
+    tallas: ["M"]
+  },
+  {
+    nombre: "Hoddie Oversize - FORGER",
+    categoria: "Buzos",
+    precio: 95000,
+    original: 0,
+    imagen: "fotos/hoddie-forger.jpeg",
+    badge: "nuevo",
+    tallas: ["M"]
+  },
+
+  /* ============================================================
+     CAMISETAS (10 productos: 4 con doble foto, 6 con una sola foto)
+     ============================================================ */
+  {
+    nombre: "Camiseta Oversize",
+    categoria: "Camisetas",
+    precio: 70000,
+    original: 0,
+    imagen: "fotos/C1.jpg",
+    fotos: ["fotos/C1.jpg", "fotos/C1,1.jpg"],
+    badge: "nuevo",
+    tallas: ["M"]
+  },
+  {
+    nombre: "Camiseta Oversize",
+    categoria: "Camisetas",
+    precio: 70000,
+    original: 0,
+    imagen: "fotos/C2.jpg",
+    fotos: ["fotos/C2.jpg", "fotos/C2,2.jpg"],
+    badge: "nuevo",
+    tallas: ["M"]
+  },
+  {
+    nombre: "Camiseta Oversize",
+    categoria: "Camisetas",
+    precio: 70000,
+    original: 0,
+    imagen: "fotos/C3.jpg",
+    fotos: ["fotos/C3.jpg", "fotos/C3,3.jpg"],
+    badge: "nuevo",
+    tallas: ["M"]
+  },
+  {
+    nombre: "Camiseta Oversize",
+    categoria: "Camisetas",
+    precio: 70000,
+    original: 0,
+    imagen: "fotos/C5.jpg",
+    fotos: ["fotos/C5.jpg", "fotos/C5,5.jpg"],
+    badge: "nuevo",
+    tallas: ["M"]
+  },
+  {
+    nombre: "Camiseta Oversize",
+    categoria: "Camisetas",
+    precio: 45000,
+    original: 70000,
+    imagen: "fotos/01.jpg",
+    fotos: ["fotos/01.jpg", "fotos/01,1.jpg"],
+    badge: "oferta",
+    tallas: ["M"]
+  },
+  {
+    nombre: "Camiseta Oversize Acid Wash",
+    categoria: "Camisetas",
+    precio: 45000,
+    original: 70000,
+    imagen: "fotos/C12.jpeg",
+    badge: "oferta",
+    tallas: ["M"]
+  },
+  {
+    nombre: "Camiseta Oversize",
+    categoria: "Camisetas",
+    precio: 55000,
+    original: 70000,
+    imagen: "fotos/C6.jpeg",
+    badge: "nuevo",
+    tallas: ["M"]
+  },
+  {
+    nombre: "Camiseta Oversize",
+    categoria: "Camisetas",
+    precio: 70000,
+    original: 0,
+    imagen: "fotos/C7.jpeg",
+    badge: "nuevo",
+    tallas: ["M"]
+  },
+  {
+    nombre: "Camiseta Oversize Boxy Fit",
+    categoria: "Camisetas",
+    precio: 70000,
+    original: 0,
+    imagen: "fotos/C8.jpeg",
+    badge: "nuevo",
+    tallas: ["M"]
+  },
+  {
+    nombre: "Camiseta Oversize Basica",
+    categoria: "Camisetas",
+    precio: 70000,
+    original: 0,
+    imagen: "fotos/C9.jpeg",
+    badge: "nuevo",
+    tallas: ["M"]
+  },
+  {
+    nombre: "Camiseta Oversize",
+    categoria: "Camisetas",
+    precio: 70000,
+    original: 0,
+    imagen: "fotos/C10.jpeg",
+    badge: "nuevo",
+    tallas: ["M"]
+  },
+  {
+    nombre: "Camiseta Oversize",
+    categoria: "Camisetas",
+    precio: 70000,
+    original: 0,
+    imagen: "fotos/C11.jpeg",
+    badge: "nuevo",
+    tallas: ["M"]
+  },
+  {
+    nombre: "Camiseta Oversize",
+    categoria: "Camisetas",
+    precio: 70000,
+    original: 0,
+    imagen: "fotos/C13.jpeg",
+    badge: "nuevo",
+    tallas: ["M"]
+  },
+  /* ============================================================
+     GORRAS (28 productos, 1 foto cada una)
+     ============================================================ */
+  { nombre: "Gorra Bydagu SUPREME", categoria: "Gorras", tipo:"cerrada",precio: 70000, original: 0, imagen: "fotos/GC1.jpEg", badge: "nuevo", tallas: ["Única"] },
+  { nombre: "Gorra Bydagu NEW ERA", categoria: "Gorras", tipo:"cerrada",precio: 70000, original: 0, imagen: "fotos/GC2.jpeg", badge: "nuevo", tallas: ["Única"] },
+  { nombre: "Gorra Bydagu SUPREME", categoria: "Gorras", tipo:"cerrada",precio: 70000, original: 0, imagen: "fotos/GC3.jpeg", fotos: ["fotos/GC3.jpeg", "fotos/GC3,3.jpeg"], badge: "nuevo", tallas: ["Única"] },
+  { nombre: "Gorra Bydagu SOX", categoria: "Gorras", tipo:"cerrada", precio: 70000, original: 0, imagen: "fotos/GC4.jpeg", badge: "nuevo", tallas: ["Única"] },
+  { nombre: "Gorra Bydagu WHITE SOX", categoria: "Gorras", tipo:"cerrada", precio: 70000, original: 0, imagen: "fotos/GC5.jpeg", fotos: ["fotos/GC5.jpeg", "fotos/GC5,5.jpeg"], badge: "nuevo",tallas: ["Única"] },
+    { nombre: "Gorra NEW ERA", categoria: "Gorras", tipo: "cerrada", precio: 50000, original: 0, imagen: "fotos/GC6.jpg", badge:"nuevo", tallas: ["unica"]},
+  { nombre: "Gorra Bydagu EL MAGO", categoria: "Gorras", tipo:"ajustada", precio: 70000, original: 0, imagen: "fotos/GA1.jpeg", badge: "nuevo", tallas: ["Única"] },
+  { nombre: "Gorra Bydagu LOS ANGELES", categoria: "Gorras", tipo:"ajustada", precio: 70000, original: 0, imagen: "fotos/GA2.jpeg", badge: "nuevo",tallas: ["Única"] },
+  { nombre: "Gorra Bydagu CHROME HEARTS", categoria: "Gorras", tipo:"ajustada", precio: 50000, original: 0, imagen: "fotos/GA3.jpeg", badge: "nuevo", tallas: ["Única"] },
+  { nombre: "Gorra Bydagu LAKERS +", categoria: "Gorras", tipo:"ajustada", precio: 50000, original: 0, imagen: "fotos/GA4.jpeg", badge: "nuevo", tallas: ["Única"] },
+  { nombre: "Gorra Bydagu HATS", categoria: "Gorras", tipo:"ajustada", precio: 50000, original: 0, imagen: "fotos/GA5.jpeg", badge: "nuevo", tallas: ["Única"] },
+  { nombre: "Gorra Bydagu HATS", categoria: "Gorras", tipo:"ajustada", precio: 50000, original: 0, imagen: "fotos/GA6.jpeg", badge: "nuevo", tallas: ["Única"] },
+  { nombre: "Gorra Bydagu SUPREME", categoria: "Gorras", tipo:"ajustada", precio: 50000, original: 0, imagen: "fotos/GA7.jpeg", badge: "nuevo", tallas: ["Única"] },
+  { nombre: "Gorra Bydagu JORDAN", categoria: "Gorras", tipo:"ajustada", precio: 50000, original: 0, imagen: "fotos/GA8.jpeg", badge: "nuevo", tallas: ["Única"] },
+  { nombre: "Gorra Bydagu JORDAN", categoria: "Gorras", tipo:"ajustada", precio: 50000, original: 0, imagen: "fotos/GA9.jpeg", badge: "nuevo", tallas: ["Única"] },
+  { nombre: "Gorra Bydagu CASH ONLY", categoria: "Gorras", tipo:"ajustada", precio: 45000, original: 55000, imagen: "fotos/GA10.jpeg", badge: "oferta", tallas: ["Única"] },
+  { nombre: "Gorra Bydagu NIKE", categoria: "Gorras", tipo:"ajustada", precio: 45000, original: 55000, imagen: "fotos/GA11.jpeg", badge: "oferta", tallas: ["Única"] },
+  { nombre: "Gorra Bydagu DODGERS", categoria: "Gorras", tipo:"ajustada", precio: 50000, original: 0, imagen: "fotos/GA12.jpg", badge: "nuevo", tallas: ["Única"] },
+  { nombre: "Gorra Bydagu BASS PRO SHOP", categoria: "Gorras", tipo:"ajustada", precio: 45000, original: 0, imagen: "fotos/GA13.jpg", badge: "nuevo", tallas: ["Única"] },
+  { nombre: "Gorra Bydagu W MERCH", categoria: "Gorras", tipo:"ajustada", precio: 45000, original: 0, imagen: "fotos/GA14.jpg", badge: "nuevo", tallas: ["Única"] },
+  { nombre: "Gorra Bydagu CABALLISTA", categoria: "Gorras", tipo:"ajustada", precio: 45000, original: 0, imagen: "fotos/GA15.jpg", badge: "nuevo", tallas: ["Única"] },
+  { nombre: "Gorra Bydagu NIKE", categoria: "Gorras", tipo:"ajustada", precio: 45000, original: 0, imagen: "fotos/GA16.jpg", badge: "nuevo", tallas: ["Única"] },
+  { nombre: "Gorra Bydagu MARINEROS", categoria: "Gorras", tipo:"ajustada", precio: 45000, original: 0, imagen: "fotos/GA17.jpg", badge: "nuevo", tallas: ["Única"] },
+    { nombre: "Gorra Bydagu NEW ERA", categoria: "Gorras", tipo:"ajustada", precio: 50000, original: 40000, imagen: "fotos/GA18.jpeg", badge: "oferta", tallas: ["Única"] },
+      { nombre: "Gorra Bydagu FCF", categoria: "Gorras", tipo:"ajustada", precio: 55000, original: 35000, imagen: "fotos/GA19.jpg", badge: "oferta", tallas: ["Única"] },
+
+  /* ────────────────────────────────────────────────────────
+     PARA AGREGAR UN PRODUCTO NUEVO, COPIA Y PEGA ESTO:
+  {
+    nombre: "Nombre del Producto",
+    categoria: "Buzos" | "Camisetas" | "Gorras",
+    precio: 100000,
+    original: 0,
+    imagen: "fotos/nombre-foto.jpg",
+    badge: "nuevo",
+    tallas: ["S", "M", "L"]
+  },
+     ──────────────────────────────────────────────────────── */
+];
+
+let carrito = [];
+
+function formatCOP(n) {
+  return "$" + n.toLocaleString("es-CO");
+}
+
+function pct(precio, original) {
+  if (!original || original === 0) return 0;
+  return Math.round((1 - precio / original) * 100);
+}
+
+function productoCardHTML(p, i) {
+  return `
+    <div class="producto-card" onclick="verProducto(${i})">
+      <div class="producto-img">
+        ${p.badge === "oferta" ? '<div class="badge-oferta">Oferta</div>' : ""}
+        ${p.badge === "nuevo"  ? '<div class="badge-nuevo">Nuevo</div>'  : ""}
+        <img src="${p.imagen}" alt="${p.nombre}"
+          style="width:100%;height:100%;object-fit:cover;display:block;"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div style="display:none;width:100%;height:100%;align-items:center;justify-content:center;flex-direction:column;gap:8px;color:#555;font-size:13px;text-align:center;padding:1rem">
+          <span style="font-size:40px">📷</span>
+          Foto no encontrada<br><span style="font-size:11px;color:#444">${p.imagen}</span>
+        </div>
+      </div>
+      <div class="producto-info">
+        <div class="producto-cat">${p.categoria}</div>
+        <div class="producto-nombre">${p.nombre}</div>
+        <div class="producto-precio-row">
+          <span class="precio-actual">${formatCOP(p.precio)}</span>
+          ${p.original ? `<span class="precio-original">${formatCOP(p.original)}</span>` : ""}
+        </div>
+        <div class="tallas">
+          ${p.tallas.map(t => `<span class="talla">${t}</span>`).join("")}
+        </div>
+        <button class="btn-agregar" onclick="event.stopPropagation(); agregarCarrito(${i})">+ Agregar al carrito</button>
+      </div>
+    </div>
+  `;
+}
+
+const categorias = ["Buzos", "Camisetas", "Gorras"];
+let categoriaActual = categorias[0];
+
+/* Subcategorías por categoría: solo Gorras tiene división ajustada / cerrada */
+const subcategorias = {
+  "Gorras": ["ajustada", "cerrada"]
+};
+let subcategoriaActual = null;
+
+function renderTabs() {
+  const tabs = document.getElementById("categoria-tabs");
+  tabs.innerHTML = categorias.map(cat => {
+    const cantidad = productos.filter(p => p.categoria === cat).length;
+    return `<button class="categoria-tab${cat === categoriaActual ? " activa" : ""}" onclick="seleccionarCategoria('${cat}')">${cat} (${cantidad})</button>`;
+  }).join("");
+
+  const subTabsCont = document.getElementById("subcategoria-tabs");
+  const subs = subcategorias[categoriaActual];
+  if (subs && subs.length) {
+    subTabsCont.style.display = "flex";
+    subTabsCont.innerHTML = subs.map(sub => {
+      const cantidad = productos.filter(p => p.categoria === categoriaActual && p.tipo === sub).length;
+      return `<button class="subcategoria-tab${sub === subcategoriaActual ? " activa" : ""}" onclick="seleccionarSubcategoria('${sub}')">${sub} (${cantidad})</button>`;
+    }).join("");
+  } else {
+    subTabsCont.style.display = "none";
+    subTabsCont.innerHTML = "";
+  }
+}
+
+function seleccionarCategoria(cat) {
+  categoriaActual = cat;
+  const subs = subcategorias[cat];
+  subcategoriaActual = subs && subs.length ? subs[0] : null;
+  renderTabs();
+  renderProductos();
+  window.scrollTo({ top: document.getElementById("categoria-tabs").offsetTop - 80, behavior: "smooth" });
+}
+
+function seleccionarSubcategoria(sub) {
+  subcategoriaActual = sub;
+  renderTabs();
+  renderProductos();
+}
+
+function renderProductos() {
+  const contenedor = document.getElementById("productos-grid");
+  const items = productos
+    .map((p, i) => ({ p, i }))
+    .filter(({ p }) => {
+      if (p.categoria !== categoriaActual) return false;
+      if (subcategorias[categoriaActual] && subcategoriaActual) {
+        return p.tipo === subcategoriaActual;
+      }
+      return true;
+    });
+
+  document.getElementById("contador-productos").textContent = items.length + " producto" + (items.length !== 1 ? "s" : "");
+
+  contenedor.innerHTML = `
+    <div class="categoria-grid">
+      ${items.map(({ p, i }) => productoCardHTML(p, i)).join("")}
+    </div>
+  `;
+}
+
+function renderOfertas() {
+  const lista = document.getElementById("oferta-lista");
+  const ofertas = productos.filter(p => p.badge === "oferta");
+  if (ofertas.length === 0) {
+    lista.innerHTML = '<div class="no-ofertas">No hay ofertas activas en este momento.</div>';
+    return;
+  }
+  lista.innerHTML = ofertas.map((p) => {
+    const i = productos.indexOf(p);
+    return `
+    <div class="oferta-item" onclick="verProducto(${i})" style="cursor:pointer">
+      <img src="${p.imagen}" alt="${p.nombre}" style="width:56px;height:56px;object-fit:cover;border-radius:4px;flex-shrink:0;background:#1c1c1c">
+      <div class="oferta-item-info">
+        <h4>${p.nombre}</h4>
+        <p>${p.categoria}</p>
+      </div>
+      <div class="oferta-descuento">
+        <div class="pct">-${pct(p.precio, p.original)}%</div>
+        ${p.original ? `<div class="antes">${formatCOP(p.original)}</div>` : ""}
+      </div>
+    </div>`;
+  }).join("");
+}
+
+function showSection(sec) {
+  ["catalogo", "ofertas", "contacto"].forEach(id => {
+    document.getElementById("section-" + id).style.display = id === sec ? "block" : "none";
+    const nav = document.getElementById("nav-" + id);
+    if (nav) nav.classList.toggle("active", id === sec);
+  });
+  if (sec === "ofertas") renderOfertas();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function agregarCarrito(i) {
+  carrito.push({ ...productos[i], uid: Date.now() });
+  actualizarCarrito();
+  mostrarToast("'" + productos[i].nombre + "' agregado al carrito ✓");
+}
+
+function quitarCarrito(uid) {
+  carrito = carrito.filter(item => item.uid !== uid);
+  actualizarCarrito();
+}
+
+function actualizarCarrito() {
+  const count    = document.getElementById("cart-count");
+  const itemsEl  = document.getElementById("carrito-items");
+  const footerEl = document.getElementById("carrito-footer");
+  const totalEl  = document.getElementById("carrito-total-precio");
+  count.textContent = carrito.length;
+  if (carrito.length === 0) {
+    itemsEl.innerHTML = `<div class="carrito-vacio"><span class="carrito-vacio-icon">🛒</span>Tu carrito está vacío</div>`;
+    footerEl.style.display = "none";
+    return;
+  }
+  const total = carrito.reduce((s, item) => s + item.precio, 0);
+  itemsEl.innerHTML = carrito.map(item => `
+    <div class="carrito-item">
+      <img src="${item.imagen}" alt="${item.nombre}" style="width:48px;height:48px;object-fit:cover;border-radius:4px;flex-shrink:0;background:#1c1c1c">
+      <div class="carrito-item-info">
+        <h4>${item.nombre}</h4>
+        <p>${item.categoria}</p>
+      </div>
+      <div class="carrito-item-precio">${formatCOP(item.precio)}</div>
+      <button class="carrito-remove" onclick="quitarCarrito(${item.uid})">✕</button>
+    </div>
+  `).join("");
+  totalEl.textContent = formatCOP(total);
+  footerEl.style.display = "block";
+}
+
+function toggleCarrito() {
+  document.getElementById("carrito-panel").classList.toggle("open");
+  document.getElementById("carrito-overlay").classList.toggle("open");
+}
+
+function checkout() {
+  if (carrito.length === 0) return;
+  const items = carrito.map(p => `• ${p.nombre} - ${formatCOP(p.precio)}`).join("\n");
+  const total = carrito.reduce((s, p) => s + p.precio, 0);
+  const msg   = `¡Hola! Quiero realizar el siguiente pedido:\n\n${items}\n\nTotal: ${formatCOP(total)}`;
+  const tel   = config.telefono.replace(/\D/g, "");
+  window.open(`https://wa.me/${tel}?text=${encodeURIComponent(msg)}`, "_blank");
+}
+
+function enviarWhatsApp() {
+  const nombre  = document.getElementById("form-nombre").value.trim();
+  const mensaje = document.getElementById("form-mensaje").value.trim();
+  if (!nombre || !mensaje) { mostrarToast("Por favor completa tu nombre y mensaje"); return; }
+  const tel   = config.telefono.replace(/\D/g, "");
+  const texto = `Hola! Soy ${nombre}. ${mensaje}`;
+  window.open(`https://wa.me/${tel}?text=${encodeURIComponent(texto)}`, "_blank");
+}
+
+function mostrarToast(msg) {
+  const t = document.getElementById("toast");
+  t.textContent = msg;
+  t.classList.add("show");
+  setTimeout(() => t.classList.remove("show"), 2800);
+}
+
+function aplicarConfig() {
+  document.title = config.nombreTienda + " — Tienda";
+  document.getElementById("hero-tag").textContent    = config.heroTag;
+  document.getElementById("hero-titulo").innerHTML   = config.heroTitulo;
+  document.getElementById("hero-desc").textContent   = config.heroDescripcion;
+  document.getElementById("oferta-desc").textContent = config.ofertaDescripcion;
+  document.getElementById("info-telefono").textContent  = config.telefono;
+  document.getElementById("info-email").textContent     = config.email;
+  document.getElementById("info-direccion").textContent = config.direccion;
+  document.getElementById("info-horario").textContent   = config.horario;
+}
+
+function abrirFullscreen(src) {
+  document.getElementById("fullscreen-img").src = src;
+  document.getElementById("fullscreen-overlay").classList.add("open");
+}
+
+function cerrarFullscreen() {
+  document.getElementById("fullscreen-overlay").classList.remove("open");
+}
+
+let fotoActual = 0;
+let fotosActuales = [];
+
+function cambiarFoto(dir) {
+  fotoActual = (fotoActual + dir + fotosActuales.length) % fotosActuales.length;
+  document.getElementById("modal-img").src = fotosActuales[fotoActual];
+  document.getElementById("modal-foto-contador").textContent = (fotoActual + 1) + " / " + fotosActuales.length;
+  document.querySelectorAll(".modal-miniatura").forEach((m, idx) => {
+    m.classList.toggle("activa", idx === fotoActual);
+  });
+}
+
+function verProducto(i) {
+  const p = productos[i];
+  fotosActuales = (p.fotos && p.fotos.length > 0) ? p.fotos : [p.imagen];
+  fotoActual = 0;
+
+  const imgEl = document.getElementById("modal-img");
+  imgEl.src = fotosActuales[0];
+  imgEl.alt = p.nombre;
+
+  const wrap = document.getElementById("modal-imagen-wrap");
+  wrap.querySelectorAll(".modal-miniaturas, .modal-flecha, .modal-contador").forEach(el => el.remove());
+
+  if (fotosActuales.length > 1) {
+    const flechaIzq = document.createElement("button");
+    flechaIzq.className = "modal-flecha modal-flecha-izq";
+    flechaIzq.innerHTML = "&#8592;";
+    flechaIzq.onclick = (e) => { e.stopPropagation(); cambiarFoto(-1); };
+
+    const flechaDer = document.createElement("button");
+    flechaDer.className = "modal-flecha modal-flecha-der";
+    flechaDer.innerHTML = "&#8594;";
+    flechaDer.onclick = (e) => { e.stopPropagation(); cambiarFoto(1); };
+
+    const contador = document.createElement("div");
+    contador.className = "modal-contador";
+    contador.id = "modal-foto-contador";
+    contador.textContent = "1 / " + fotosActuales.length;
+
+    const minDiv = document.createElement("div");
+    minDiv.className = "modal-miniaturas";
+    fotosActuales.forEach((src, idx) => {
+      const thumb = document.createElement("img");
+      thumb.src = src;
+      thumb.className = "modal-miniatura" + (idx === 0 ? " activa" : "");
+      thumb.onclick = () => {
+        fotoActual = idx;
+        imgEl.src = src;
+        document.getElementById("modal-foto-contador").textContent = (idx + 1) + " / " + fotosActuales.length;
+        minDiv.querySelectorAll(".modal-miniatura").forEach(m => m.classList.remove("activa"));
+        thumb.classList.add("activa");
+      };
+      minDiv.appendChild(thumb);
+    });
+
+    wrap.appendChild(flechaIzq);
+    wrap.appendChild(flechaDer);
+    wrap.appendChild(contador);
+    wrap.appendChild(minDiv);
+  }
+
+  document.getElementById("modal-cat").textContent = p.categoria;
+  document.getElementById("modal-nombre").textContent = p.nombre;
+  document.getElementById("modal-precio").textContent = formatCOP(p.precio);
+  const origEl = document.getElementById("modal-original");
+  origEl.textContent = p.original ? formatCOP(p.original) : "";
+  origEl.style.display = p.original ? "inline" : "none";
+  const badgeWrap = document.getElementById("modal-badge-wrap");
+  badgeWrap.innerHTML = p.badge === "oferta"
+    ? '<div class="badge-oferta">Oferta</div>'
+    : p.badge === "nuevo" ? '<div class="badge-nuevo">Nuevo</div>' : "";
+  document.getElementById("modal-tallas").innerHTML =
+    p.tallas.map(t => `<span class="talla">${t}</span>`).join("");
+  document.getElementById("modal-btn-agregar").onclick = () => { agregarCarrito(i); cerrarModal(); };
+  document.getElementById("modal-btn-ws").onclick = () => {
+    const tel = config.telefono.replace(/\D/g, "");
+    const msg = `¡Hola! Me interesa el producto: *${p.nombre}* (${formatCOP(p.precio)}). ¿Tienen disponibilidad?`;
+    window.open(`https://wa.me/${tel}?text=${encodeURIComponent(msg)}`, "_blank");
+  };
+  document.getElementById("modal-overlay").classList.add("open");
+  document.getElementById("modal-producto").classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+
+function cerrarModal() {
+  document.getElementById("modal-overlay").classList.remove("open");
+  document.getElementById("modal-producto").classList.remove("open");
+  document.body.style.overflow = "";
+}
+
+aplicarConfig();
+renderTabs();
+renderProductos();
+
+</script>
+</body>
+</html>
