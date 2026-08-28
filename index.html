@@ -438,6 +438,16 @@ footer {
   padding: 2.5rem; text-align: center;
 }
 .footer-logo {
+   .footer-social {
+  display: flex; justify-content: center; gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+.footer-social a {
+  color: var(--texto-muted); text-decoration: none;
+  font-size: 12px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; transition: color 0.2s;
+}
+.footer-social a:hover { color: var(--blanco); }
   font-family: 'Bebas Neue', sans-serif;
   font-size: 24px; letter-spacing: 6px; color: #333; margin-bottom: 0.5rem;
 }
@@ -658,6 +668,10 @@ footer p { font-size: 12px; color: #444; }
 
 <footer>
   <div class="footer-logo">ByDagu<span>.</span>CO</div>
+     <div class="footer-social">
+    <a href="https://instagram.com/tu_usuario" target="_blank" rel="noopener">Instagram</a>
+    <a href="https://tiktok.com/@tu_usuario" target="_blank" rel="noopener">TikTok</a>
+  </div>
   <p>© 2025 ByDagu.CO — Moda urbana colombiana. Todos los derechos reservados.</p>
 </footer>
 
@@ -726,6 +740,8 @@ const config = {
   email: "Bydagu33@gmail.com",
   direccion: "Sogamoso, Boyacá, Colombia",
   horario: "Lun - Sáb: 7am - 9pm",
+  instagram: "https://instagram.com/bydagu_",
+  tiktok: "https://tiktok.com/@ByDagu",
 };
 
 const productos = [
