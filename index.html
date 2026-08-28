@@ -70,12 +70,6 @@ nav {
   display: inline-flex; align-items: center; justify-content: center;
   margin-left: 6px;
 }
-.nav-social {
-  color: var(--texto-muted);
-  display: flex; align-items: center;
-  transition: color 0.2s;
-}
-.nav-social:hover { color: var(--blanco); }
 
 /* ===== HERO ===== */
 .hero {
@@ -449,15 +443,6 @@ footer {
 }
 .footer-logo span { color: var(--acento); }
 footer p { font-size: 12px; color: #444; }
-.footer-social {
-  display: flex; justify-content: center; align-items: center;
-  gap: 1.25rem; margin-bottom: 1rem;
-}
-.footer-social a {
-  color: #555; transition: color 0.2s;
-  display: flex; align-items: center;
-}
-.footer-social a:hover { color: var(--blanco); }
 
 /* ===== IMAGEN PANTALLA COMPLETA ===== */
 .fullscreen-overlay {
@@ -582,6 +567,8 @@ footer p { font-size: 12px; color: #444; }
   .carrito-panel { width: 100%; right: -100%; }
   .hero::before { font-size: 120px; }
 }
+
+
 </style>
 </head>
 <body>
@@ -594,12 +581,6 @@ footer p { font-size: 12px; color: #444; }
     <li><a onclick="showSection('contacto')" id="nav-contacto">Contacto</a></li>
   </ul>
   <div class="nav-right">
-    <a href="#" id="ig-navbar" target="_blank" rel="noopener" class="nav-social" aria-label="Instagram">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
-    </a>
-    <a href="#" id="tt-navbar" target="_blank" rel="noopener" class="nav-social" aria-label="TikTok">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 2h-3v14.2a2.8 2.8 0 1 1-2-2.68V10.4a6 6 0 1 0 5 5.92V9.4a7.3 7.3 0 0 0 4 1.2V7.4a4.5 4.5 0 0 1-4-2.9V2z"/></svg>
-    </a>
     <button class="cart-btn" onclick="toggleCarrito()">
       🛒 Carrito <span class="cart-count" id="cart-count">0</span>
     </button>
@@ -654,18 +635,6 @@ footer p { font-size: 12px; color: #444; }
         <div class="dato"><div class="dato-icon">✉️</div><span id="info-email">info@urbnco.com</span></div>
         <div class="dato"><div class="dato-icon">📍</div><span id="info-direccion">Sogamoso, Boyacá, Colombia</span></div>
         <div class="dato"><div class="dato-icon">🕐</div><span id="info-horario">Lun - Sáb: 9am - 7pm</span></div>
-        <div class="dato">
-          <div class="dato-icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
-          </div>
-          <a href="#" id="ig-contacto" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">@bydagu_</a>
-        </div>
-        <div class="dato">
-          <div class="dato-icon">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 2h-3v14.2a2.8 2.8 0 1 1-2-2.68V10.4a6 6 0 1 0 5 5.92V9.4a7.3 7.3 0 0 0 4 1.2V7.4a4.5 4.5 0 0 1-4-2.9V2z"/></svg>
-          </div>
-          <a href="#" id="tt-contacto" target="_blank" rel="noopener" style="color:inherit;text-decoration:none">@bydagu1</a>
-        </div>
       </div>
     </div>
     <div class="contacto-form">
@@ -689,14 +658,6 @@ footer p { font-size: 12px; color: #444; }
 
 <footer>
   <div class="footer-logo">ByDagu<span>.</span>CO</div>
-  <div class="footer-social">
-    <a href="#" id="ig-footer" target="_blank" rel="noopener" aria-label="Instagram">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
-    </a>
-    <a href="#" id="tt-footer" target="_blank" rel="noopener" aria-label="TikTok">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 2h-3v14.2a2.8 2.8 0 1 1-2-2.68V10.4a6 6 0 1 0 5 5.92V9.4a7.3 7.3 0 0 0 4 1.2V7.4a4.5 4.5 0 0 1-4-2.9V2z"/></svg>
-    </a>
-  </div>
   <p>© 2025 ByDagu.CO — Moda urbana colombiana. Todos los derechos reservados.</p>
 </footer>
 
@@ -765,8 +726,6 @@ const config = {
   email: "Bydagu33@gmail.com",
   direccion: "Sogamoso, Boyacá, Colombia",
   horario: "Lun - Sáb: 7am - 9pm",
-  instagram: "https://instagram.com/bydagu_",
-  tiktok: "https://tiktok.com/@bydagu1",
 };
 
 const productos = [
@@ -794,7 +753,7 @@ const productos = [
   },
 
   /* ============================================================
-     CAMISETAS
+     CAMISETAS (10 productos: 4 con doble foto, 6 con una sola foto)
      ============================================================ */
   {
     nombre: "Camiseta Oversize",
@@ -803,6 +762,16 @@ const productos = [
     original: 0,
     imagen: "fotos/C2.jpg",
     fotos: ["fotos/C2.jpg", "fotos/C2,2.jpg"],
+    badge: "nuevo",
+    tallas: ["M"]
+  },
+  {
+    nombre: "Camiseta Oversize",
+    categoria: "Camisetas",
+    precio: 70000,
+    original: 0,
+    imagen: "fotos/C3.jpg",
+    fotos: ["fotos/C3.jpg", "fotos/C3,3.jpg"],
     badge: "nuevo",
     tallas: ["M"]
   },
@@ -898,15 +867,15 @@ const productos = [
     badge: "nuevo",
     tallas: ["M"]
   },
-
   /* ============================================================
-     GORRAS
+     GORRAS (28 productos, 1 foto cada una)
      ============================================================ */
   { nombre: "Gorra Bydagu SUPREME", categoria: "Gorras", tipo:"cerrada",precio: 70000, original: 0, imagen: "fotos/GC1.jpeg", badge: "nuevo", tallas: ["Única"] },
   { nombre: "Gorra Bydagu NEW ERA", categoria: "Gorras", tipo:"cerrada",precio: 70000, original: 0, imagen: "fotos/GC2.jpeg", badge: "nuevo", tallas: ["Única"] },
   { nombre: "Gorra Bydagu SUPREME", categoria: "Gorras", tipo:"cerrada",precio: 70000, original: 0, imagen: "fotos/GC3.jpeg", fotos: ["fotos/GC3.jpeg", "fotos/GC3,3.jpeg"], badge: "nuevo", tallas: ["Única"] },
+
   { nombre: "Gorra Bydagu WHITE SOX", categoria: "Gorras", tipo:"cerrada", precio: 70000, original: 0, imagen: "fotos/GC5.jpeg", fotos: ["fotos/GC5.jpeg", "fotos/GC5,5.jpeg"], badge: "nuevo",tallas: ["Única"] },
-  { nombre: "Gorra NEW ERA", categoria: "Gorras", tipo: "cerrada", precio: 50000, original: 0, imagen: "fotos/GC6.jpg", badge:"nuevo", tallas: ["unica"]},
+    { nombre: "Gorra NEW ERA", categoria: "Gorras", tipo: "cerrada", precio: 50000, original: 0, imagen: "fotos/GC6.jpg", badge:"nuevo", tallas: ["unica"]},
   { nombre: "Gorra Bydagu EL MAGO", categoria: "Gorras", tipo:"ajustada", precio: 70000, original: 0, imagen: "fotos/GA1.jpeg", badge: "nuevo", tallas: ["Única"] },
   { nombre: "Gorra Bydagu LOS ANGELES", categoria: "Gorras", tipo:"ajustada", precio: 70000, original: 0, imagen: "fotos/GA2.jpeg", badge: "nuevo",tallas: ["Única"] },
   { nombre: "Gorra Bydagu CHROME HEARTS", categoria: "Gorras", tipo:"ajustada", precio: 50000, original: 0, imagen: "fotos/GA3.jpeg", badge: "nuevo", tallas: ["Única"] },
@@ -917,13 +886,14 @@ const productos = [
   { nombre: "Gorra Bydagu JORDAN", categoria: "Gorras", tipo:"ajustada", precio: 50000, original: 0, imagen: "fotos/GA8.jpeg", badge: "nuevo", tallas: ["Única"] },
   { nombre: "Gorra Bydagu CASH ONLY", categoria: "Gorras", tipo:"ajustada", precio: 45000, original: 55000, imagen: "fotos/GA10.jpeg", badge: "oferta", tallas: ["Única"] },
   { nombre: "Gorra Bydagu NIKE", categoria: "Gorras", tipo:"ajustada", precio: 45000, original: 55000, imagen: "fotos/GA11.jpeg", badge: "oferta", tallas: ["Única"] },
+  { nombre: "Gorra Bydagu DODGERS", categoria: "Gorras", tipo:"ajustada", precio: 50000, original: 0, imagen: "fotos/GA12.jpg", badge: "nuevo", tallas: ["Única"] },
   { nombre: "Gorra Bydagu BASS PRO SHOP", categoria: "Gorras", tipo:"ajustada", precio: 45000, original: 0, imagen: "fotos/GA13.jpg", badge: "nuevo", tallas: ["Única"] },
   { nombre: "Gorra Bydagu W MERCH", categoria: "Gorras", tipo:"ajustada", precio: 45000, original: 0, imagen: "fotos/GA14.jpg", badge: "nuevo", tallas: ["Única"] },
   { nombre: "Gorra Bydagu CABALLISTA", categoria: "Gorras", tipo:"ajustada", precio: 45000, original: 0, imagen: "fotos/GA15.jpg", badge: "nuevo", tallas: ["Única"] },
   { nombre: "Gorra Bydagu NIKE", categoria: "Gorras", tipo:"ajustada", precio: 45000, original: 0, imagen: "fotos/GA16.jpg", badge: "nuevo", tallas: ["Única"] },
   { nombre: "Gorra Bydagu MARINEROS", categoria: "Gorras", tipo:"ajustada", precio: 45000, original: 0, imagen: "fotos/GA17.jpg", badge: "nuevo", tallas: ["Única"] },
-  { nombre: "Gorra Bydagu NEW ERA", categoria: "Gorras", tipo:"ajustada", precio: 50000, original: 40000, imagen: "fotos/GA18.jpeg", badge: "oferta", tallas: ["Única"] },
-  { nombre: "Gorra Bydagu FCF", categoria: "Gorras", tipo:"ajustada", precio: 55000, original: 35000, imagen: "fotos/GA19.jpg", badge: "oferta", tallas: ["Única"] },
+    { nombre: "Gorra Bydagu NEW ERA", categoria: "Gorras", tipo:"ajustada", precio: 50000, original: 40000, imagen: "fotos/GA18.jpeg", badge: "oferta", tallas: ["Única"] },
+      { nombre: "Gorra Bydagu FCF", categoria: "Gorras", tipo:"ajustada", precio: 55000, original: 35000, imagen: "fotos/GA19.jpg", badge: "oferta", tallas: ["Única"] },
 
   /* ────────────────────────────────────────────────────────
      PARA AGREGAR UN PRODUCTO NUEVO, COPIA Y PEGA ESTO:
@@ -980,7 +950,7 @@ function productoCardHTML(p, i) {
   `;
 }
 
-const categorias = ["Gorras", "Camisetas", "Buzos"];
+const categorias = ["Buzos", "Camisetas", "Gorras"];
 let categoriaActual = categorias[0];
 
 /* Subcategorías por categoría: solo Gorras tiene división ajustada / cerrada */
@@ -1158,12 +1128,6 @@ function aplicarConfig() {
   document.getElementById("info-email").textContent     = config.email;
   document.getElementById("info-direccion").textContent = config.direccion;
   document.getElementById("info-horario").textContent   = config.horario;
-  document.getElementById("ig-navbar").href   = config.instagram;
-  document.getElementById("ig-contacto").href = config.instagram;
-  document.getElementById("ig-footer").href   = config.instagram;
-  document.getElementById("tt-navbar").href   = config.tiktok;
-  document.getElementById("tt-contacto").href = config.tiktok;
-  document.getElementById("tt-footer").href   = config.tiktok;
 }
 
 function abrirFullscreen(src) {
